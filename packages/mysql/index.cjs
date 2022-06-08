@@ -84,11 +84,10 @@ const runQuery = async (queryString, database) => {
         var pool = mysql.createPool(credentials);
         const promisePool = pool.promise();
         const [rows, fields] = await promisePool.query(queryString);
-        console.log(JSON.stringify(fields, null, 2));
-        console.log(`My SQL types ${JSON.stringify(mysqlTypes, null, 2)}`);
 
         const standardizedRows = await standardizeResult(rows);
         return { rows: standardizedRows, columnTypes : mapResultsToEvidenceColumnTypes(fields) };
+
     }
     catch (err) {
         if (err.message) {

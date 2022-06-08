@@ -21,7 +21,7 @@ const updateCache = function (devMode, queryString, data, columnTypes, queryTime
     if (devMode) {
         const {cacheDirectory, resultsCacheFile, columnTypeCacheFile} = getQueryCachePaths(queryString, queryTime);
         if (!pathExistsSync(cacheDirectory)) {
-            emptyDirSync(cacheDirectory); //TODO I think this invalidates the entire cache.  Check if this is by design.
+            emptyDirSync(cacheDirectory);
             mkdirSync(cacheDirectory, { recursive: true });
         }
         writeJSONSync(resultsCacheFile, data, { throws: false });
