@@ -1,6 +1,9 @@
 
+import { customFormat } from './customFormat';
+
 export default function(value, columnFormat, columnUnits) {
 
+  console.error(`columnFormat = ${columnFormat}`);
   let suffix;
   switch(columnUnits){
         case "B":
@@ -43,6 +46,15 @@ export default function(value, columnFormat, columnUnits) {
         case "chf":
             value = value.toLocaleString('en-US',{style: 'currency', currency: 'CHF', minimumFractionDigits: 2, maximumFractionDigits: 2}) + suffix
             break;
+        case "id":
+            value = value;
+            break;
+        case "num":
+            value = value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + suffix
+            break;
+        case "num2":
+            value = value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + suffix
+            break;
         case "date": 
             value = value.toLocaleDateString('en-US',{ year: 'numeric', month: 'long', day: 'numeric' })
             break;
@@ -64,20 +76,16 @@ export default function(value, columnFormat, columnUnits) {
         case "year_num":
             value = value;
             break;
-        case "id":
-            value = value;
-            break;
         case "str":
             value = value.toLocaleString();
             break;
-        case "num":
-            value = value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + suffix
-            break;
-        case "num2":
-            value = value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + suffix
-            break;
-        default: 
-            value = value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + suffix
+        default:
+            try {
+                //TODO you have to get this from the settings
+                value = customFormat(value, columnFormat);
+            } catch(error) {
+                value = value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + suffix;
+            }
         }
         } catch(error) {
             value = value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + suffix

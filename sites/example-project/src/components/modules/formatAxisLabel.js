@@ -1,3 +1,5 @@
+import { customFormat } from "./customFormat";
+
 export default function formatAxisLabel(value, columnFormat, columnUnits) {
 
     let suffix;
@@ -71,8 +73,12 @@ export default function formatAxisLabel(value, columnFormat, columnUnits) {
         case "year_num":
             value = value;
             break;
-        default: 
-            value = value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + suffix
+        default:
+            try {
+                value = customFormat(value, columnFormat);
+            } catch (error) {
+                value = value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + suffix;
+            }
     }
 
   return value;
