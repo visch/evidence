@@ -1,13 +1,14 @@
 
 <script>
     import * as ssf from 'ssf';
+
     export let formats;
-    export let source;
     
-   function formatExample(format) {
-        if (format.userInput) {
+    function formatExample(format) {
+        console.log(`formatting using name=${format.formatName}, format=${format.formatValue}, userInput=${format.userInput}, and exampleInput=${format.exampleInput}`); //TODO DEBUG
+        let normalizedUserInput = format.userInput?.trim();
+        if (normalizedUserInput) {
             try {
-                let normalizedUserInput = format.userInput;
                 switch (format.valueType) {
                     case 'boolean': {
                         normalizedUserInput = Boolean(format.userInput.trim())
@@ -25,20 +26,25 @@
                         break;
                     }
                     default: {
-                        normalizedUserInput = format.userInput.trim(); break;
+                        normalizedUserInput = format.userInput.trim();
+                        break;
                     }
                 }
-                return ssf.format(format.formatValue, normalizedUserInput);
+                let result = ssf.format(format.formatValue, normalizedUserInput);
+                console.log(`Formatting result ${result}`);
+                return result;
             } catch (error){
                 console.log(error);
                 return "";
             }
         } else {
-            return ssf.format(format.formatValue, format.exampleInput);
+            let result = ssf.format(format.formatValue, format.exampleInput);
+            console.log(`Formatting result ${result}`);
+            return result;
         }
-   }
+    }
 </script>
-{source} <br/>
+
 {#each formats as format}
     {format.formatName} | 
     {format.formatValue} | 

@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import gitRemoteOriginUrl from 'git-remote-origin-url'; // get the git repo
 import { dev } from '$app/env';
 
 const CUSTOM_SETTINGS_FILE = '.custom-settings.json';
@@ -40,7 +39,6 @@ export async function get() {
         }
     }
 }
-
 
 export function post(request) {
     let body = JSON.parse(request.body);

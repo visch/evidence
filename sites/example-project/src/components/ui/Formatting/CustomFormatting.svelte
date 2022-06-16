@@ -25,7 +25,7 @@
 			let result = await submitted.json();
 			if (result) {
 				customSettings = result;
-				cancelAddCustomFormat();
+				resetNewCustomFormat();
 				console.log(`DEBUG settings post post => ${JSON.stringify(customSettings, null, 2)}`); //TODO DEBUG
 			} else {
 				//TODO handle error
@@ -41,9 +41,6 @@
 		formatName = undefined;
 		formatValue = undefined;
 		valueType = undefined;
-	}
-	function cancelAddCustomFormat() {
-		resetNewCustomFormat();
 		editingCustomFormat = false;
 	}
   
@@ -55,7 +52,7 @@
 </script>
 
 <h1>Custom Formats</h1>
-<FormatGrid formats={customSettings.customFormats} source="custom"/>
+<FormatGrid formats={customSettings.customFormats}/>
 {#if editingCustomFormat }
 	<form on:submit|preventDefault={submitNewCustomFormat} autocomplete="off">
 		Format Name : <input id="formatName"  placeholder="my_currency_format" bind:value={formatName} />
@@ -70,7 +67,7 @@
 			</select>
         <footer>
             <button id="submitCustomFormatButton" type=submit  disabled={ !(formatName && formatValue) }>Add</button>
-            <button id="cancelAddCustomFormatButton" on:click={cancelAddCustomFormat} >Cancel</button>    
+            <button id="resetNewCustomFormatButton" on:click={resetNewCustomFormat}>Cancel</button>
         </footer>
 	</form>
 {:else}

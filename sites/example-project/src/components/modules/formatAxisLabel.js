@@ -1,4 +1,4 @@
-import { customFormat } from "./customFormat";
+import { applyFormatting } from '$lib/modules/formats';
 
 export default function formatAxisLabel(value, columnFormat, columnUnits) {
 
@@ -75,7 +75,7 @@ export default function formatAxisLabel(value, columnFormat, columnUnits) {
             break;
         default:
             try {
-                value = customFormat(value, columnFormat);
+                value = applyFormatting(value, columnFormat);
             } catch (error) {
                 value = value.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + suffix;
             }

@@ -2,7 +2,7 @@ import getColumnType from "./getColumnType.js";
 import getColumnEvidenceType from "./getColumnEvidenceType.js";
 import getColumnExtents from "./getColumnExtents.js";
 import getColumnUnits from "./getColumnUnits.js";
-import getColumnFormat from "./getColumnFormat.js";
+import { getColumnFormat } from "./formats";
 import formatTitle from './formatTitle.js'
 import getFormatTag from "./getFormatTag.js";
 
@@ -26,7 +26,7 @@ export default function getColumnSummary(data, returnType="object") {
         evidenceColumnType = getColumnEvidenceType(data, colName);
         colExtents = getColumnExtents(data, colName);        
         colUnits = getColumnUnits(colExtents);
-        colFormat = getColumnFormat(colFmtTag, colType);
+        colFormat = getColumnFormat(colFmtTag);
   
         let thisCol = {
             [colName]: {
@@ -49,7 +49,7 @@ export default function getColumnSummary(data, returnType="object") {
         evidenceColumnType = getColumnEvidenceType(data, colName);
         colExtents = getColumnExtents(data, colName);        
         colUnits = getColumnUnits(colExtents);
-        colFormat = getColumnFormat(colFmtTag, colType);
+        colFormat = getColumnFormat(colFmtTag);
   
           columnSummary.push({
               id: colName,
