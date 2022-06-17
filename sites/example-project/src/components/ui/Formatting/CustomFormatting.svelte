@@ -3,7 +3,7 @@
     import * as ssf from 'ssf';
 
 	export let builtInFormats = {};
-    export let customSettings = {};
+	export let customSettings = {};
 
 	const valueTypeOptions = ["number", "date"];
 
@@ -50,7 +50,7 @@
 	function getValidationErrors() {
 		let errors = [];
 		if (!(/^[a-zA-Z]+$/.test(formatName))) {
-			errors.push(`The format name must only consist of letters`);
+			errors.push(`The format name should only contain letters. "${formatName}" has other characters.`);
 		}
 		let testValue = 10;
 		let testResult;
@@ -64,14 +64,14 @@
 			ssfError = error;
 		}
 		if (!testResult) {
-			errors.push(`Format ${formatValue} is invalid for type ${valueType}`);
+			errors.push(`Format "${formatValue}" is invalid for type "${valueType}".`);
 		}
 		if (ssfError) {
 			errors.push(ssfError);
 		}
 		if (builtInFormats.find(format => format.formatName === formatName) ||
 		    customSettings.customFormats?.find(format => format.formatName === formatName)){
-			errors.push(`The format name ${formatName} is already assigned`);
+			errors.push(`The format name "${formatName}"" is already assigned to an existing format.`);
 		}
 		return errors;
 	}

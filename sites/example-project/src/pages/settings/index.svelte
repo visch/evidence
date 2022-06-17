@@ -2,12 +2,16 @@
     import { dev } from '$app/env'    
     export const load = async ({fetch}) => {
         if(dev) {
-            const res = await fetch("../api/settings.json")
-            // const {settings} = await res.json()
-            const body = await res.json()
-            const settings = body.settings;
-            const gitIgnore = body.gitIgnore;
-            const customSettings = body.customSettings
+            const settingsRes = await fetch("../api/settings.json");
+            const customSettingsRes = await fetch("../api/customSettings.json")
+
+            const settingsBody = await settingsRes.json();
+            const settings = settingsBody.settings;
+            const gitIgnore = settingsBody.gitIgnore;
+            
+            const customSettingsBody = await customSettingsRes.json();
+            const customSettings = customSettingsBody.customSettings;
+
             return {
                 props: {
                     settings,
@@ -36,17 +40,16 @@
     import DeploySettingsPanel from '@evidence-dev/components/ui/Deployment/DeploySettingsPanel.svelte';
     import FormattingSettingsPanel from '@evidence-dev/components/ui/Formatting/FormattingSettingsPanel.svelte'
     import TelemetrySettingsPanel from '@evidence-dev/components/ui/TelemetryOptOut/TelemetrySettingsPanel.svelte';
-    console.log(`DEBUG UI customSettings ${JSON.stringify(customSettings, null, 2)}`); //TODO DEBUG
 </script>
 
 {#if dev}
 <DatabaseSettingsPanel {settings} {gitIgnore}/> 
 <VersionControlPanel {settings}/>
+<DeploySettingsPanel {settings} />
+<TelemetrySettingsPanel {settings} />
 {#if customSettings?.panelEnabled}
     <FormattingSettingsPanel {settings} {customSettings} />
 {/if}
-<DeploySettingsPanel {settings} /> 
-<TelemetrySettingsPanel {settings} />
 <br/>
 {:else}
 <p>Settings are only available in development mode.</p>

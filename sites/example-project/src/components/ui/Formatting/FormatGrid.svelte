@@ -16,7 +16,6 @@
     }
     
     function formatExample(format) {
-        console.log(`formatting using name=${format.formatName}, format=${format.formatValue}, userInput=${format.userInput}, and exampleInput=${format.exampleInput}`); //TODO DEBUG
         let normalizedUserInput = format.userInput?.trim();
         let preFormattedValue = normalizedUserInput || format.exampleInput || defaultExample(format.valueType);
         if (preFormattedValue) {
@@ -87,7 +86,7 @@
         <tr>
             <td>{format.formatName} </td>
             <td>{format.formatValue} </td>
-            <td><input id=id_format_row{format.formatName} placeholder={format.exampleInput || defaultExample(format.valueType)} bind:value={format.userInput} /> </td>
+            <td><input id=id_format_row{format.formatName} placeholder={format.exampleInput || defaultExample(format.valueType)} bind:value={format.userInput} on:blur={format.userInput=undefined} /> </td>
             <td>{formatExample(format)}</td>
         </tr>
     {/each}

@@ -17,7 +17,7 @@
         <svelte:component this={CustomFormatting} {builtInFormats} {customSettings}/>
     </div>
     <footer>
-        <span>Learn more about <a class=docs-link href=" https://www.benlcollins.com/spreadsheets/google-sheets-custom-number-format/">value formatting</a></span>
+        <span>Learn more about <a class=docs-link href="https://exceljet.net/custom-number-formats">value formatting &rarr;</a></span>
     </footer>
 </div>
 </form>
