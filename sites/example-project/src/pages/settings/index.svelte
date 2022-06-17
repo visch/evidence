@@ -4,14 +4,8 @@
         if(dev) {
             const settingsRes = await fetch("../api/settings.json");
             const customSettingsRes = await fetch("../api/customSettings.json")
-
-            const settingsBody = await settingsRes.json();
-            const settings = settingsBody.settings;
-            const gitIgnore = settingsBody.gitIgnore;
-            
-            const customSettingsBody = await customSettingsRes.json();
-            const customSettings = customSettingsBody.customSettings;
-
+            const { settings, gitIgnore }  = await settingsRes.json();
+            const { customSettings } = await customSettingsRes.json();
             return {
                 props: {
                     settings,

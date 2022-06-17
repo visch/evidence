@@ -14,7 +14,6 @@
 	let newFormatValidationErrors = "";
 
     async function submitNewCustomFormat() {
-        console.log(`DEBUG customSettings pre post => ${JSON.stringify(customSettings, null, 2)}`); //TODO DEBUG
 		let validationErrors = getValidationErrors();
 		if (validationErrors && validationErrors.length > 0) {
 			newFormatValidationErrors = validationErrors.join("<br/>");

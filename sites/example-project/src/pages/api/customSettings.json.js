@@ -23,15 +23,13 @@ export async function get() {
             status: 404
         }
     } else { 
-        let customSettings = { value: "not-set-from-custom-settings.json.js" };
+        let customSettings = {};
         try{
             customSettings = getCustomSettings() || customSettings;
         } catch {
             //TODO logError
         }
         let result = { customSettings };
-        console.log(`DEBUG result => ${JSON.stringify(result, null, 2)}`); //TODO DEBUG
-
         return {
             header: "accept: application/json",
             status: 200,
@@ -42,10 +40,7 @@ export async function get() {
 
 export function post(request) {
     let body = JSON.parse(request.body);
-    console.log(`DEBUG customSettings POST body = ${JSON.stringify(body, null, 2)}`); //TODO DEBUG
     const { newCustomFormat } = JSON.parse(request.body);
-
-    console.log(`DEBUG post newCustomFormat => ${JSON.stringify(newCustomFormat)}`);  //TODO DEBUG
 
     let customSettings = getCustomSettings() || {};
 
@@ -57,7 +52,6 @@ export function post(request) {
             customSettings.customFormats.push(newCustomFormat);
         }
         saveCustomSettings(customSettings);
-        console.log(`DEBUG wrote to customSettings => ${JSON.stringify(customSettings,  null, 2)}`); //TODO DEBUG
     }
     return {  body: customSettings };
 

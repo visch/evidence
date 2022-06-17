@@ -2,8 +2,6 @@
 import { applyFormatting } from '$lib/modules/formats';
 
 export default function(value, columnFormat, columnUnits) {
-
-  console.log(`formatValue(value=${value}, columnFormat=${columnFormat}, columnUnits=${columnUnits}`);//TODO DEBUG
   let suffix;
   switch(columnUnits){
         case "B":
