@@ -10,12 +10,15 @@
 <form>
 <div class=container>
     <div class=panel> 
-    <h1>Formats</h1>
+    <h1>Value Formatting</h1>
     </div>
     <div class=panel transition:slide|local>
         <svelte:component this={BuiltInFormating} {builtInFormats} />
         <svelte:component this={CustomFormatting} {builtInFormats} {customSettings}/>
     </div>
+    <footer>
+        <span>Learn more about <a class=docs-link href=" https://www.benlcollins.com/spreadsheets/google-sheets-custom-number-format/">value formatting</a></span>
+    </footer>
 </div>
 </form>
 <style>
@@ -36,6 +39,17 @@
 
     .panel:first-of-type {
         border-top:none;
+    }
+
+    footer {
+        border: 1px solid var(--grey-200);
+        border-radius: 0 0 5px 5px;
+        background-color: var(--grey-100);
+        padding:1.0em;
+        display:flex;
+        font-size: 14px;
+        align-items: center;
+        font-family: var(--ui-font-family);
     }
 
 </style>
