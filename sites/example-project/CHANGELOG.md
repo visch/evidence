@@ -1,5 +1,16 @@
 # @evidence-dev/components
 
+## 1.5.0
+
+### Minor Changes
+
+- e098028: Add FunnelChart component
+
+### Patch Changes
+
+- fed8cf3: fix install command
+- c013859: Adds optional schema field for postgres connector
+
 ## 1.4.2
 
 ### Patch Changes

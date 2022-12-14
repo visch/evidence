@@ -1,5 +1,11 @@
 # @evidence-dev/preprocess
 
+## 1.3.0
+
+### Minor Changes
+
+- e098028: Add FunnelChart component
+
 ## 1.2.6
 
 ### Patch Changes

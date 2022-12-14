@@ -1,5 +1,16 @@
 # @evidence-dev/evidence
 
+## 7.0.0
+
+### Patch Changes
+
+- Updated dependencies [fed8cf3]
+- Updated dependencies [e098028]
+- Updated dependencies [c013859]
+  - @evidence-dev/components@1.5.0
+  - @evidence-dev/preprocess@1.3.0
+  - @evidence-dev/db-orchestrator@1.1.11
+
 ## 6.0.2
 
 ### Patch Changes
